@@ -7,21 +7,25 @@ import json
 
 app = Dash()
 server = app.server
+current_dir = os.path.dirname(__file__)
 
 # Working paths
-path = r'C:\Users\skobb\micromobility\temporal data'
-spatial_data_path = r'C:\Users\skobb\micromobility\spatial data'
+path = os.path.join(current_dir, 'temporal data')
+spatial_data_path = os.path.join(current_dir, 'spatial data')
 
 # Load temporal data
 year = ['2019', '2020', '202101', '2021', '2022', '2023']
 dataframes = []
-for i in range(len(year)):
-    csv_file = os.path.join(path, year[i] + "-processed-data.csv")
-    data = pd.read_csv(csv_file)
-    data = data.iloc[:, 1:]
-    data['startdate'] = pd.to_datetime(data['startdate'])
-    dataframes.append(data)
-    print("attached " + year[i] + " to dataframe")
+for y in year:
+    csv_file = os.path.join(path, y + "-processed-data.csv")
+    try:
+        data = pd.read_csv(csv_file)
+        data = data.iloc[:, 1:]
+        data['startdate'] = pd.to_datetime(data['startdate'])
+        dataframes.append(data)
+        print(f"Attached {y} to dataframe")
+    except FileNotFoundError:
+        print(f"File not found: {csv_file}")
 citibike = pd.concat(dataframes, ignore_index=True)
 
 austin_csv = os.path.join(path, "new-austin-process.csv")
