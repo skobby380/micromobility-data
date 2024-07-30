@@ -10,8 +10,8 @@ server = app.server
 current_dir = os.path.dirname(__file__)
 
 # Working paths
-path = os.path.join(current_dir, 'temporal data')
-spatial_data_path = os.path.join(current_dir, 'spatial data')
+path = os.path.join(current_dir, '..', 'temporal data')
+spatial_data_path = os.path.join(current_dir, '..', 'spatial data')
 
 # Load temporal data
 year = ['2019', '2020', '202101', '2021', '2022', '2023']
