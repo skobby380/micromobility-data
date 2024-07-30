@@ -86,6 +86,9 @@ def create_austin_map(geojson_data):
 
 app.layout = html.Div(children=[
     html.H1(children='Micromobility Dashboard', style={'textAlign': 'center', 'fontFamily': 'Arial'}),
+    html.P("This dashboard provides an interactive visualization of micromobility data, "
+           "allowing you to explore trip patterns and demand for Citibikes in New York City and e-scooters in Austin. "
+           "Select a city from the dropdown to view detailed graphs on trip volumes, trip duration, and more."),
     dcc.Dropdown(
         id='city-dropdown',
         options=[
