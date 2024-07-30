@@ -10,3 +10,5 @@ plotly==5.22.0
 seaborn==0.13.2
 gunicorn
 dash-tools
+docopt
+setuptools>=58.0.4
